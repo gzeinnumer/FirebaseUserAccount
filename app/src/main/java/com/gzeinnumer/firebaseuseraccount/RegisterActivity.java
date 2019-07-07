@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     } else {
                                         Toast.makeText(RegisterActivity.this, "Register gagal!!", Toast.LENGTH_SHORT).show();
                                     }
-                                    //test ke browser 
+                                    //test ke browser
                                 }
                             });
                 }
