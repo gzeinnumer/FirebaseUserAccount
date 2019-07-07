@@ -53,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
                 firebaseAuth.signOut();
                 finish();
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                //coba jalan kan
+
+                //todo 38 verivication email
+                //buka fireabase, dan ambil template, silahkan setting
                 break;
             case R.id.refresh_menu:
                 break;

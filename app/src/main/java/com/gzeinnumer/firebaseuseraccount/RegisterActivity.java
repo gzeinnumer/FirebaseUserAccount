@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -53,8 +54,18 @@ public class RegisterActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     //todo 17
                                     if (task.isSuccessful()){
-                                        Toast.makeText(RegisterActivity.this, "Register sukses!!", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+//                                        Toast.makeText(RegisterActivity.this, "Register sukses!!", Toast.LENGTH_SHORT).show();
+//                                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                                        //todo 42 komentarkan 2 baris diatas
+                                        sentEmailVerification();
+                                        //end todo 42
+                                        //coba jalankan
+                                        //hapus email yang aktif
+                                        //register lagi
+                                        //cek imbox email
+                                        //coba login dulu ke aplikasi
+                                        //coba verivicasi
+                                        //coba login lagi
                                     } else {
                                         Toast.makeText(RegisterActivity.this, "Register gagal!!", Toast.LENGTH_SHORT).show();
                                     }
@@ -98,5 +109,26 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         return result;
+    }
+
+    //todo 41
+    private void sentEmailVerification(){
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        if (firebaseUser != null){
+            firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    //todo 42
+                    if (task.isSuccessful()){
+                        Toast.makeText(RegisterActivity.this, "Daftar berhasil silahkan verivicasi email", Toast.LENGTH_SHORT).show();
+                        firebaseAuth.signOut();
+                        finish();
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    } else {
+                        Toast.makeText(RegisterActivity.this, "verivication email gagal dikirim", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 }

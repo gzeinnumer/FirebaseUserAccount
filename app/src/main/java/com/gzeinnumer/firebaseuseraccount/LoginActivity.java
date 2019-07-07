@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -124,7 +125,10 @@ public class LoginActivity extends AppCompatActivity {
                 if (task.isSuccessful()){
                     progressDialog.dismiss();
                     Toast.makeText(LoginActivity.this, "Login Sukses", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    //todo 40 komentarkan baris diatas
+                    checkEmailVerification();
+                    //end todo 40
                 } else {
                     Toast.makeText(LoginActivity.this, "Login gagal", Toast.LENGTH_SHORT).show();
                     counter--;
@@ -139,4 +143,17 @@ public class LoginActivity extends AppCompatActivity {
         //coba jalankan
     }
 
+    //todo 39
+    private void checkEmailVerification(){
+        FirebaseUser firebaseUser = firebaseAuth.getInstance().getCurrentUser();
+        Boolean emailflag = firebaseUser.isEmailVerified();
+
+        if (emailflag){
+            finish();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        } else {
+            Toast.makeText(this, "Verificasi email dahulu", Toast.LENGTH_SHORT).show();
+            firebaseAuth.signOut();
+        }
+    }
 }
