@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText email, password;
     private Button btnLogin;
-    private TextView btnToRegister, tv_counter;
+    private TextView btnToRegister, tv_counter, tvForgotPass;
 
     //todo 18
     private int counter =5;
@@ -73,6 +73,19 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        //todo 53
+        tvForgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), PasswordActivity.class));
+                //todo 54
+                //coba run
+                //reset pass dengan email aktif
+                //lalu ganti pass
+                //dan login lagi
+            }
+        });
+
     }
 
     private void setupUIVIews() {
@@ -81,6 +94,8 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btn_login);
         tv_counter = findViewById(R.id.tv_counter);
         btnToRegister = findViewById(R.id.btn_to_regis);
+        //todo 44
+        tvForgotPass = findViewById(R.id.tv_forgot_pass);
     }
 
     //todo 6

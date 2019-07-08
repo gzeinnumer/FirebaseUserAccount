@@ -36,6 +36,15 @@
         android:layout_marginBottom="16dp"
         android:text="Login" />
 
+    <!--todo 43-->
+    <TextView
+        android:text="Forgot pass!"
+        android:id="@+id/tv_forgot_pass"
+        android:layout_marginBottom="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <!--end todo 43-->
+
     <TextView
         android:id="@+id/tv_counter"
         android:layout_marginBottom="16dp"
